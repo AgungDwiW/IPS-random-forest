@@ -15,8 +15,6 @@ model = pickle.load(open("model_forest_pleno", 'rb'))
 
 def predict(test):
     test = json.loads(test)
-    bssid_token = pickle.load(open("BSSID_pleno", 'rb'))
-    model = pickle.load(open("model_forest_pleno", 'rb'))
     """
     test = {"c4:a3:66:ba:07:be":"-89",
             "98:de:d0:ed:3f:24":"-86",

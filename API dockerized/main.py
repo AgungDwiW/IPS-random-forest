@@ -25,13 +25,14 @@ def predict(test):
             "fc:ec:da:47:15:3b":"-60",
             "fc:ec:da:47:0d:7f":"-80"}
     """
+    print(test)
     cleaned = [0 for i in range(len(bssid_token))]
     for i in bssid_token:
         cleaned[bssid_token[i]] = int(test[i])
     if len(cleaned) != len(bssid_token):
         return "error"
     try:
-    #print ([cleaned])
+        print ([cleaned])
         model.n_jobs = 1
         pred = model.predict([cleaned])
     except:

@@ -31,11 +31,11 @@ def predict(test):
     if len(cleaned) != len(bssid_token):
         err = {"error": "error - some AP no found"}
         return json.dumps(err)
-    try:
-        pred = model.predict([cleaned])
-    except:
-        err = {"error": "error - cant predict"}
-        return json.dumps(err)
+    #try:
+    pred = model.predict([cleaned])
+    #except:
+    #    err = {"error": "error - cant predict"}
+    #    return json.dumps(err)
         
     ret = {"predicted": pred[0]}
     return ret

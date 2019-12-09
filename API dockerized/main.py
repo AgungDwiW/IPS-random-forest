@@ -47,6 +47,8 @@ def index():
 
 @app.route('/api', methods=['POST'])
 def predictApi():
+    PostData = request.form.get('PostData')
+    print(PostData)
     return predict(request.get_json())
     #return str(bc.predict())
 

@@ -54,7 +54,7 @@ def predictApi():
 @app.route('/test', methods=['POST'])
 def test():
     print(request.get_json())
-    return request.get_json()
+    return str(request.get_json())
 
 
 if __name__ == '__main__':

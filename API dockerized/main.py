@@ -51,7 +51,7 @@ def predictApi():
     #return str(bc.predict())
 
 
-@WebApp.route('/test', methods=['POST'])
+@app.route('/test', methods=['POST'])
 def test():
     print(request.get_json())
     return request.get_json()

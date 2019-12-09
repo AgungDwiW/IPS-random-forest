@@ -28,15 +28,16 @@ def predict(test):
     print(test)
     cleaned = [0 for i in range(len(bssid_token))]
     for i in bssid_token:
-        cleaned[bssid_token[i]] = int(test[i])
+        if i in test:
+            cleaned[bssid_token[i]] = int(test[i])
     if len(cleaned) != len(bssid_token):
-        return "error"
+        return "error not all ap found"
     try:
         print ([cleaned])
         model.n_jobs = 1
         pred = model.predict([cleaned])
     except:
-        return "error"
+        return "error predict"
         
     return str(pred[0])
 app = Flask(__name__)

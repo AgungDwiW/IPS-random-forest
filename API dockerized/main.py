@@ -29,18 +29,15 @@ def predict(test):
     for i in bssid_token:
         cleaned[bssid_token[i]] = int(test[i])
     if len(cleaned) != len(bssid_token):
-        err = {"error": "error - some AP no found"}
-        return json.dumps(err)
-    #try:
+        return "error"
+    try:
     #print ([cleaned])
-    model.n_jobs = 1
-    pred = model.predict([cleaned])
-    #except:
-    #    err = {"error": "error - cant predict"}
-    #    return json.dumps(err)
+        model.n_jobs = 1
+        pred = model.predict([cleaned])
+    except:
+        return "error"
         
-    ret = {"predicted": pred[0]}
-    return json.dumps(ret)
+    return str(pred[0])
 app = Flask(__name__)
 
 @app.route('/isAlive')

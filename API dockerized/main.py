@@ -33,6 +33,7 @@ def predict(test):
         return json.dumps(err)
     #try:
     print ([cleaned])
+    model.n_jobs = 1
     pred = model.predict([cleaned])
     #except:
     #    err = {"error": "error - cant predict"}

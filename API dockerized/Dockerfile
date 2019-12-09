@@ -7,4 +7,4 @@ RUN pip install -r ./requirements.txt
 
 ENV ENVIRONMENT production
 
-COPY main.py __init__.py /app/
+COPY main.py __init__.py model_forest_pleno BSSID_pleno /app/

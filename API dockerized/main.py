@@ -48,15 +48,16 @@ def index():
 @app.route('/api', methods=['POST'])
 def predictApi():
     PostData = request.form.get('PostData')
-    print(PostData)
-    return predict(request.get_json())
+    json = json.loads(PostData)
+    return predict(json)
     #return str(bc.predict())
 
 
 @app.route('/test', methods=['POST'])
 def test():
-    print(request.get_json())
-    return str(request.get_json())
+    PostData = request.form.get('PostData')
+    json = json.loads(PostData)
+    return str(json)
 
 
 if __name__ == '__main__':

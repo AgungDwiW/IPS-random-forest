@@ -1,12 +1,13 @@
-from flask import Blueprint
-from flask import render_template
+#!flask/bin/python
+import os
+from flask import Flask
 from flask import request
-from os import remove
-from werkzeug import secure_filename
-from flask import Flask, redirect, url_for
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 import pickle
 import json
 
+# creating and saving some model
 """
 predictor
 """
@@ -14,7 +15,6 @@ bssid_token = pickle.load(open("BSSID_pleno", 'rb'))
 model = pickle.load(open("model_forest_pleno", 'rb'))
 
 def predict(test):
-    test = json.loads(test)
     """
     test = {"c4:a3:66:ba:07:be":"-89",
             "98:de:d0:ed:3f:24":"-86",
@@ -39,18 +39,26 @@ def predict(test):
         
     ret = {"predicted": pred[0]}
     return ret
+app = Flask(__name__)
 
-"""
-controller
-"""
-WebApp = Blueprint("controller",__name__)
-
-@WebApp.route('/api', methods=['POST'])
+@app.route('/isAlive')
 def index():
+    return "true"
+
+@app.route('/api', methods=['POST'])
+def predictApi():
     return predict(request.get_json())
     #return str(bc.predict())
+
 
 @WebApp.route('/test', methods=['POST'])
 def test():
     print(request.get_json())
     return request.get_json()
+
+
+if __name__ == '__main__':
+    if os.environ['ENVIRONMENT'] == 'production':
+        app.run(port=80,host='0.0.0.0')
+    if os.environ['ENVIRONMENT'] == 'local':
+        app.run(port=5000,host='0.0.0.0')

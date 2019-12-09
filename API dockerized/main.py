@@ -32,6 +32,7 @@ def predict(test):
         err = {"error": "error - some AP no found"}
         return json.dumps(err)
     #try:
+    print ([cleaned])
     pred = model.predict([cleaned])
     #except:
     #    err = {"error": "error - cant predict"}

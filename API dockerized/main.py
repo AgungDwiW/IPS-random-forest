@@ -32,7 +32,7 @@ def predict(test):
         err = {"error": "error - some AP no found"}
         return json.dumps(err)
     #try:
-    print ([cleaned])
+    #print ([cleaned])
     model.n_jobs = 1
     pred = model.predict([cleaned])
     #except:
@@ -40,7 +40,7 @@ def predict(test):
     #    return json.dumps(err)
         
     ret = {"predicted": pred[0]}
-    return ret
+    return json.dumps(ret)
 app = Flask(__name__)
 
 @app.route('/isAlive')

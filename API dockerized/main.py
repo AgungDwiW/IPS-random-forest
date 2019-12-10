@@ -11,8 +11,8 @@ import json
 """
 predictor
 """
-bssid_token = pickle.load(open("BSSID_pleno", 'rb'))
-model = pickle.load(open("model_forest_pleno", 'rb'))
+bssid_token = pickle.load(open("BSSID_kelas", 'rb'))
+model = pickle.load(open("model_kelas", 'rb'))
 
 def predict(test):
     """

@@ -26,7 +26,11 @@ y_all = [i[0] for i in data]
 x_all = [i[1:] for i in data]
 import pickle
 bssid_token = pickle.load(open("BSSID_pleno", 'rb'))
-
+bssid_token = {
+        'c4:a3:66:ba:07:be' : 0,
+        'fc:ec:da:47:11:17' : 1,
+        'fc:ec:da:47:15:3b' :2
+        }
 x_true = []
 for j in range(len(x_all)):
     x_temp = [0 for i in range(len(bssid_token))]
@@ -73,7 +77,7 @@ create random forest model
 
 from sklearn.ensemble import RandomForestClassifier
 
-model = RandomForestClassifier(n_estimators=90, random_state=0)
+model = RandomForestClassifier(n_estimators=20, random_state=0)
 model.fit(x_all, y_all)
 y_pred = model.predict(x_test)
 
@@ -91,6 +95,7 @@ print(accuracy_score(y_test, y_pred))
 export model
 """
 import pickle
+
 data_used = [data[0][1],data[0][3], data[0][5], data[0][7]]
 pickle.dump(model, open("model_forest_pleno", 'wb'))
 pickle.dump(bssid_token, open("BSSID_pleno", 'wb'))
